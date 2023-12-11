@@ -64,7 +64,7 @@ abstract class HomeControllerBase with Store {
     }
     else{
       // verificação completa
-      Navigator.pushNamedAndRemoveUntil(context, "/userProfile", (route) => false);
+      Navigator.pushNamed(context, "/userProfile");
     }
     loading = false;
   }

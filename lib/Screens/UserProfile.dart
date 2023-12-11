@@ -5,6 +5,13 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text("Perfil do usuário"),
+      ),
+      child: Center(
+        child: Text("Parabéns, você fez login!"),
+      )
+    );
   }
 }
