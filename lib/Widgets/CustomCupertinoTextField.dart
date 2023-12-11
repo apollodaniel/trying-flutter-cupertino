@@ -4,9 +4,10 @@ class CustomCupertinoTextField extends StatefulWidget {
   String name;
   String? errorText;
 
+  Function onChanged;
   TextEditingController controller;
 
-  CustomCupertinoTextField({required this.name, required this.controller, this.errorText});
+  CustomCupertinoTextField({required this.name, required this.controller, required this.onChanged,this.errorText});
 
   @override
   State<CustomCupertinoTextField> createState() => _CustomCupertinoTextFieldState();
@@ -36,7 +37,7 @@ class _CustomCupertinoTextFieldState extends State<CustomCupertinoTextField> {
           child: CupertinoTextField(
             controller: widget.controller,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            
+            onChanged: (_) => widget.onChanged(),
             decoration: BoxDecoration(
               color: const CupertinoDynamicColor.withBrightness(
                 color: CupertinoColors.white,

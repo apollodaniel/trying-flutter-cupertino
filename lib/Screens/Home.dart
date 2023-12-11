@@ -1,6 +1,7 @@
 import 'package:aprendendo_cupertino/Controller/HomeController.dart';
 import 'package:aprendendo_cupertino/Widgets/CustomCupertinoButton.dart';
 import 'package:aprendendo_cupertino/Widgets/CustomCupertinoTextField.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter/cupertino.dart';
 
 class Home extends StatefulWidget {
@@ -43,24 +44,34 @@ class _HomeState extends State<Home> {
               const SizedBox(
                 height: 32,
               ),
-              CustomCupertinoTextField(
-                name: "Email",
-                controller: homeController.emailController,
+              Observer(
+                builder: (context) => CustomCupertinoTextField(
+                  name: "Email",
+                  controller: homeController.emailController,
+                  onChanged: () => homeController.onChangedEmail(),
+                  errorText: homeController.emailError,
+                ),
               ),
               const SizedBox(
                 height: 16,
               ),
-              CustomCupertinoTextField(
-                name: "Password",
-                controller: homeController.passwordController,
+              Observer(
+                builder: (context) => CustomCupertinoTextField(
+                  name: "Password",
+                  controller: homeController.passwordController,
+                  onChanged: () => homeController.onChangedPassword(),
+                  errorText: homeController.passwordError,
+                )
               ),
               const SizedBox(
                 height: 32,
               ),
-              CustomCupertinoButton(
-                buttonText: "Login",
-                loading: false,
-                onPressed: () => homeController.login(context)
+              Observer(
+                builder: (context) => CustomCupertinoButton(
+                  buttonText: "Login",
+                  loading: homeController.loading,
+                  onPressed: () => homeController.login(context)
+                )
               ),
             ],
           ),

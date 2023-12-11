@@ -1,3 +1,4 @@
+import 'package:aprendendo_cupertino/FieldValidator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -8,7 +9,9 @@ class HomeController = HomeControllerBase with _$HomeController;
 abstract class HomeControllerBase with Store {
   bool loading = false;
 
+  @observable
   TextEditingController emailController = TextEditingController();
+  @observable
   TextEditingController passwordController = TextEditingController();
 
   @observable
@@ -65,4 +68,11 @@ abstract class HomeControllerBase with Store {
     }
     loading = false;
   }
+
+  @action
+  onChangedEmail()=> emailError = FieldValidator.validateEmail(emailController.text);
+    
+  @action
+  onChangedPassword()=> passwordError = FieldValidator.validatePassword(passwordController.text);
+
 }
